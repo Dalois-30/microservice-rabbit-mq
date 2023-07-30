@@ -9,6 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Order, OrderSchema } from './schemas/order.schema';
 import { RmqModule } from '@app/common/rmq/rmq.module';
 import { BILLING_SERVICE } from './constants/services';
+import { AuthModule } from '@app/common/auth/auth.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { BILLING_SERVICE } from './constants/services';
     }]),
     RmqModule.register({
       name: BILLING_SERVICE
-    })
+    }),
+    AuthModule
   ],
   controllers: [OrdersController],
   providers: [OrdersService, OrdersRepository],
